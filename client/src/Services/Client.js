@@ -1,6 +1,6 @@
 export default {
-    getOrders : () => {
-        return fetch('/api/orders')
+    getClients : () => {
+        return fetch('/api/clients')
             .then(res =>{
                 if(res.status !== 401) {
                     return res.json().then(data => data);
@@ -9,10 +9,10 @@ export default {
                     return { message : { msgBody : "UnAuthorized"}, msgError : true};
             });
     },
-    postOrder : order =>{
-        return fetch ('/api/order/add', {
+    postClient : client =>{
+        return fetch ('/api/client/add', {
             method : "POST",
-            body : JSON.stringify(order),
+            body : JSON.stringify(client),
             headers : {
                 'Content-Type' :  'application/json'
             }

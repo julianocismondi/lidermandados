@@ -68,22 +68,6 @@ userRouter.post('/todo', passport.authenticate('jwt', { session : false }), (req
     })
 });
 
-userRouter.post('/order', passport.authenticate('jwt', { session : false }), (req, res) => {
-    const order = new Order(req.body);
-    order.save(err => {
-        if(err)
-            res.status(500).json({ message: { msgBody : "UnAuthorized", msgError : true}});
-        else{
-            req.user.order.push(order);
-            req.user.save(err => {
-                if(err)
-                    res.status(500).json({ message: { msgBody : "Ocurrió un error", msgError : true}});
-                else
-                    res.status(200).json({ message: { msgBody : "Creado correctamente", msgError : false}})
-            });
-        }
-    })
-});
 
 userRouter.get('/todos', passport.authenticate('jwt', { session : false }), (req, res) => {
     User.findById({
