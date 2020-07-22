@@ -16,33 +16,27 @@ clientRouter.post(
           .status(500)
           .json({ message: { msgBody: "Ocurrió un error", msgError: true } });
       if (client)
-        res
-          .status(400)
-          .json({
-            message: {
-              msgBody:
-                "Ya se encuentra registrado un cliente con el mismo nombre",
-              msgError: true,
-            },
-          });
+        res.status(400).json({
+          message: {
+            msgBody:
+              "Ya se encuentra registrado un cliente con el mismo nombre",
+            msgError: true,
+          },
+        });
       else {
         const newClient = new Client({ name, province, city, address });
         newClient.save((err) => {
           if (err)
-            res
-              .status(500)
-              .json({
-                message: { msgBody: "Ocurrió un error", msgError: true },
-              });
+            res.status(500).json({
+              message: { msgBody: "Ocurrió un error", msgError: true },
+            });
           else
-            res
-              .status(201)
-              .json({
-                message: {
-                  msgBody: "Cliente registrado correctamente",
-                  msgError: false,
-                },
-              });
+            res.status(201).json({
+              message: {
+                msgBody: "Cliente registrado correctamente",
+                msgError: false,
+              },
+            });
         });
       }
     });
@@ -62,16 +56,34 @@ clientRouter.delete(
             .status(500)
             .json({ message: { msgBody: "Ocurrió un error", msgError: true } });
         else
-          res
-            .status(201)
-            .json({
-              message: {
-                msgBody: "Cliente elim correctamente",
-                msgError: false,
-              },
-            });
+          res.status(201).json({
+            message: {
+              msgBody: "Cliente eliminado correctamente",
+              msgError: false,
+            },
+          });
       });
     });
+  }
+);
+
+clientRouter.put(
+  "/:_id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const editClient = req.params;
+    const newDataClient = req.body;
+   await Client.findById(editClient, (err, client) => {
+      client.name = newDataClient.name;
+      client.province = newDataClient.province;
+      client.city = newDataClient.city;
+      client.address = newDataClient.address;
+      console.log(client);
+      client.save();
+    });
+    
+    res.send("todo ok")
+
   }
 );
 module.exports = clientRouter;

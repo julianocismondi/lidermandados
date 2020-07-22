@@ -1,16 +1,19 @@
-import React from "react";
-const Client = () => {
-  return (
+import React from 'react';
+import { Fragment } from 'react';
+
+
+const EditClient = () => {
+  return ( 
     <Fragment>
-      <div className="container min-vh-100">
+      
         <form
           className="row vh-100 justify-content-center align-items-center"
-          onSubmit={onSubmit}
+         
         >
           <div className="col-md-4">
             <div className="card">
               <div className="card-header">
-                <h3 className="card-title">Nuevo cliente</h3>
+                <h3 className="card-title">Client</h3>
               </div>
               <div className="card-body">
                 <div className="form-group">
@@ -20,39 +23,36 @@ const Client = () => {
                     name="name"
                     className="form-control"
                     type="text"
-                    value={}
-                    onChange={onChange}
+                   
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="">Contraseña</label>
+                  <label htmlFor="state">Provincia</label>
                   <input
-                    id="password"
-                    name="password"
+                    id="state"
+                    name="state"
                     className="form-control"
-                    type="password"
-                    value={user.password}
-                    autoComplete="new-password"
-                    onChange={onChange}
+                    type="text"
+                   
+                  
                   />
                 </div>
 
                 <div className="form-group">
                   <button className="btn btn-primary" type="submit">
-                    Ingresar
+                    Guardar
                   </button>
                 </div>
               </div>
             </div>
           </div>
           <div className="col-12">
-            {message ? <Alerts message={message} /> : null}
+           
           </div>
         </form>
-      </div>
     </Fragment>
-  );
-};
-
-export default Client;
+   );
+}
+ 
+export default EditClient;

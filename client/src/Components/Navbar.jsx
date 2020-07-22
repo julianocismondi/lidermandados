@@ -41,6 +41,11 @@ const Navbar = (props) => {
         <Link to="/todos" className="btn btn-primary">
           <li>Todos</li>
         </Link>
+
+        <Link to="/client" className="btn btn-primary">
+          <li>Client</li>
+        </Link>
+
         {user.role === admin ? (
           <Link to="/admin" className="btn btn-primary">
             <li>Admin</li>

@@ -9,6 +9,7 @@ import PrivateRoute from './hocs/PrivateRoute';
 import PublicRoute from './hocs/PublicRoute';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Alerts from './Components/Alerts';
+import IndexClient from './Components/client/IndexClient';
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
             <PublicRoute path="/register" component = { Register }></PublicRoute>
             <PrivateRoute path="/todos" roles= {[ "operator", "administrator" ]} component={ Todos }></PrivateRoute>
             <PrivateRoute path="/admin" roles= {[ "administrator" ]} component={ Admin }></PrivateRoute>
+            <PrivateRoute path="/client" roles = {[ "operator", "administrator" ]} component = { IndexClient }></PrivateRoute>
           </Router> 
         );
   }
