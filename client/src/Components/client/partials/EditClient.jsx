@@ -1,58 +1,87 @@
-import React from 'react';
-import { Fragment } from 'react';
+import React, { useState, Fragment } from "react";
 
+const EditClient = (props) => {
+  const dataClient = {
+    name: "",
+    province: "",
+    city: "",
+    address: "",
+  };
 
-const EditClient = () => {
-  return ( 
+  const [client, setClients] = useState(dataClient);
+
+  const onChange = (e) => {
+    setClients({ ...client, [e.target.name]: e.target.value });
+  };
+
+  return (
     <Fragment>
-      
-        <form
-          className="row vh-100 justify-content-center align-items-center"
-         
-        >
-          <div className="col-md-4">
-            <div className="card">
-              <div className="card-header">
-                <h3 className="card-title">Client</h3>
+      <form>
+          <div className="card">
+            <div className="card-body">
+              <div className="form-group">
+                <label htmlFor="name">Nombre</label>
+                <input
+                  id="name"
+                  name="name"
+                  className="form-control"
+                  type="text"
+                  onChange={onChange}
+                />
               </div>
-              <div className="card-body">
-                <div className="form-group">
-                  <label htmlFor="name">Nombre</label>
-                  <input
-                    id="name"
-                    name="name"
-                    className="form-control"
-                    type="text"
-                   
-                  />
-                </div>
 
-                <div className="form-group">
-                  <label htmlFor="state">Provincia</label>
-                  <input
-                    id="state"
-                    name="state"
-                    className="form-control"
-                    type="text"
-                   
+              <div className="form-group">
+                <label htmlFor="province">Provincia</label>
+                <input
+                  id="province"
+                  name="province"
+                  className="form-control"
+                  type="text"
+                  onChange={onChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="city">Ciudad</label>
+                <input
+                  id="city"
+                  name="city"
+                  className="form-control"
+                  type="text"
+                  onChange={onChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="address">Dirección</label>
+                <textarea
+                  id="address"
+                  name="address"
+                  className="form-control"
+                  rows="2"
+                  onChange={onChange}
+                ></textarea>
+              </div>
+
+              <div className="form-group">
+                <div className="row">
+                  <div className="col text-center">
+                    <button className="btn btn-primary mr-2" type="submit">
+                      Guardar
+                    </button>
                   
-                  />
-                </div>
-
-                <div className="form-group">
-                  <button className="btn btn-primary" type="submit">
-                    Guardar
-                  </button>
+                  
+                    <button className="btn btn-danger ml-2" type="reset">
+                      Cancelar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="col-12">
-           
-          </div>
-        </form>
+      </form>
     </Fragment>
-   );
-}
- 
+  );
+};
+
 export default EditClient;
