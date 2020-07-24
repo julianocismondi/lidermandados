@@ -1,4 +1,6 @@
 import React, {useContext, Fragment} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import Login from './Components/Login';
@@ -8,7 +10,6 @@ import Admin from './Components/Admin';
 import PrivateRoute from './hocs/PrivateRoute';
 import PublicRoute from './hocs/PublicRoute';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-import Alerts from './Components/Alerts';
 import IndexClient from './Components/client/IndexClient';
 
 function App() {
