@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 import EditClient from "./partials/EditClient";
 import ListClient from "./partials/ListClient";
 
-const IndexClient = () => {
+const IndexClient = props => {
+
   return (
     <Fragment>
       <div className="container mt-4 pt-4">
