@@ -43,6 +43,22 @@ clientRouter.post(
   }
 );
 
+clientRouter.get(
+  "/all",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Client.find((err, clients) => {
+      if (err)
+        res
+          .status(500)
+          .json({ message: { msgBody: "Ocurrió un error", msgError: true } });
+      else {
+        res.status(200).json({ clients, authenticated: true });
+      }
+    });
+  }
+);
+
 clientRouter.delete(
   "/:_id",
   passport.authenticate("jwt", { session: false }),
@@ -73,7 +89,7 @@ clientRouter.put(
   async (req, res) => {
     const editClient = req.params;
     const newDataClient = req.body;
-   await Client.findById(editClient, (err, client) => {
+    await Client.findById(editClient, (err, client) => {
       client.name = newDataClient.name;
       client.province = newDataClient.province;
       client.city = newDataClient.city;
@@ -81,9 +97,8 @@ clientRouter.put(
       console.log(client);
       client.save();
     });
-    
-    res.send("todo ok")
 
+    res.send("todo ok");
   }
 );
 module.exports = clientRouter;

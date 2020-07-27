@@ -1,6 +1,6 @@
 export default {
     getClients : () => {
-        return fetch('/api/clients')
+        return fetch('/api/client/all')
             .then(res =>{
                 if(res.status !== 401) {
                     return res.json().then(data => data);
