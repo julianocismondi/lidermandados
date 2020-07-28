@@ -24,9 +24,9 @@ const ListClient = (props) => {
   return (
     <Fragment>
       <Container>
-        <Table>
+        <Table className= "table table-hover">
           <thead>
-            <th>Id</th>
+            <th>#</th>
             <th>Nombre</th>
             <th>Provincia</th>
             <th>Ciudad</th>
@@ -34,24 +34,12 @@ const ListClient = (props) => {
             <th>Acciones</th>
           </thead>
           <tbody>
-            {clients.map((elemento) => (
-              <tr>
-                <td>
-                  {clients.map((clients) => {
-                    return <ClientsItem key={clients._id} clients={clients} />;
-                  })}
-                </td>
-
-                <td>
-                  <a
-                    href="client/edit/{{elemento.id}}"
-                    className=" btn btn-primary"
-                  >
-                    Editar
-                  </a>
-                  <Button color="danger">eliminar</Button>
-                </td>
-              </tr>
+            {clients.map((clients) => (
+              
+                  
+                    <ClientsItem key={clients._id} clients={clients} />
+                
+             
             ))}
           </tbody>
         </Table>

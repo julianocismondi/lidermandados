@@ -3,7 +3,6 @@ const clientRouter = express.Router();
 const passport = require("passport");
 const Client = require("../models/Client");
 const Todo = require("../models/Todo");
-const _ = require("underscore");
 
 clientRouter.post(
   "/add",

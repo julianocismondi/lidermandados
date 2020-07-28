@@ -6,10 +6,12 @@ const userRouter = require ('./routes/User');
 const branchofficeRouter = require('./routes/BranchOffice');
 const clientRouter = require('./routes/Client');
 const orderRouter = require('./routes/Order');
+const methodOverride = require('method-override');
 
 
 app.use(cookiePasrser());
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 
 const URI = 'mongodb://localhost/lider_db'
