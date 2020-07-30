@@ -23,9 +23,10 @@ const EditClient = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    resetForm();
     ClientService.postClient(client).then((data) => {
       const { message } = data;
-      resetForm();
+     
 
       if (message.msgBody === "UnAuthorized") {
         setMessage(message);
@@ -50,7 +51,7 @@ const EditClient = (props) => {
                 className="form-control"
                 type="text"
                 value={client.name}
-                required="true"
+                required={true}
                 onChange={onChange}
               />
             </div>
@@ -62,7 +63,7 @@ const EditClient = (props) => {
                 name="province"
                 className="form-control"
                 type="text"
-                required="true"
+                required={true}
                 value={client.province}
                 onChange={onChange}
               />
@@ -76,7 +77,7 @@ const EditClient = (props) => {
                 className="form-control"
                 type="text"
                 value={client.city}
-                required="true"
+                required={true}
                 onChange={onChange}
               />
             </div>
@@ -96,11 +97,11 @@ const EditClient = (props) => {
             <div className="form-group">
               <div className="row">
                 <div className="col text-center">
-                  <button className="btn btn-primary mr-2" type="submit">
+                  <button className="btn btn-primary mx-2" type="submit">
                     Guardar
                   </button>
 
-                  <button className="btn btn-danger ml-2" type="reset">
+                  <button className="btn btn-danger mx-2" onClick={resetForm}>
                     Cancelar
                   </button>
                 </div>

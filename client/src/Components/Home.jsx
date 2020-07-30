@@ -21,6 +21,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+
     </Fragment>
   );
 };

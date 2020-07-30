@@ -7,9 +7,10 @@ const Todo = require("../models/Todo");
 clientRouter.post(
   "/add",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {
+  async (req, res) => {
+    debugger;
     const { name, province, city, address } = req.body;
-    Client.findOne({ name }, (err, client) => {
+   await Client.findOne({ name }, (err, client) => {
       if (err)
         res
           .status(500)
@@ -30,12 +31,7 @@ clientRouter.post(
               message: { msgBody: "Ocurrió un error", msgError: true },
             });
           else
-            res.status(201).json({
-              message: {
-                msgBody: "Cliente registrado correctamente",
-                msgError: false,
-              },
-            });
+          res.redirect('/client');
         });
       }
     });
@@ -61,22 +57,18 @@ clientRouter.get(
 clientRouter.delete(
   "/:_id",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {
+  async (req, res) => {
     const clientId = req.params;
 
-    Client.findById(clientId, (err, client) => {
+    await Client.findById(clientId, (err, client) => {
       client.remove((err) => {
         if (err)
           res
             .status(500)
             .json({ message: { msgBody: "Ocurrió un error", msgError: true } });
         else
-          res.status(201).json({
-            message: {
-              msgBody: "Cliente eliminado correctamente",
-              msgError: false,
-            },
-          });
+          res.redirect('/client');
+          
       });
     });
   }
